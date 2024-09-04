@@ -177,7 +177,12 @@ void sendTelegramNotification(String status) {
   
   // Add a custom message if the status is 'WASPADA'
   if (status == "WASPADA") {
-    message += "Nilai LPG melebihi ambang batas, silakan cek kondisi alat\n";
+    message += "Deteksi gas LPG melebihi ambang batas aman, silakan cek kondisi alat\n";
+  }
+  
+  // Add a custom message if the status is 'BAHAYA'
+  if (status == "BAHAYA") {
+    message += "Deteksi suhu melebihi ambang batas aman, silakan cek kondisi alat\n";
   }
 
   // Send the message via the Telegram bot
