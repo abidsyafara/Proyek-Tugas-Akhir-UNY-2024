@@ -172,13 +172,18 @@ void makeTwilioCall() {
 }
 
 void sendTelegramNotification(String status) {
-  String message = "Status: " + status + "\n";
-  message += "Suhu: " + String(dht.readTemperature()) + " °C\n";
-  message += "Kelembaban: " + String(dht.readHumidity()) + " %\n";
-  message += "Nilai Gas: " + String(map(analogRead(mq6Pin), 0, 4095, 0, 1023)) + "\n";
+  String message = "PERINGATAN!!!\n";
+  message += "Status " + status + "\n";
   
+  // Add a custom message if the status is 'WASPADA'
+  if (status == "WASPADA") {
+    message += "Nilai LPG melebihi ambang batas, silakan cek kondisi alat\n";
+  }
+
+  // Send the message via the Telegram bot
   bot.sendMessage(CHAT_ID, message, "");
 }
+
 
 void setup() {
   Serial.begin(115200);
